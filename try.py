@@ -33,15 +33,13 @@ def readMyFile(filename):
 x,y = readMyFile(wdif)
 
 print(x)
-print(y)
+print(float(y[1]))
 
-m = np.reshape([x,y],(1,1))
-print(m)
 
-matrix = np.asmatrix([np.transpose(x), np.transpose(y)])
-print(matrix)
-matrix = matrix.transpose()
-matrix = np.delete(matrix,0,0)
+matrix = []
+for i in range(1,len(x)):
+    matrix.append([float(x[i]),float(y[i])])
+
 print(matrix)
 
 print("end matrix")
@@ -57,9 +55,10 @@ for line in input_file:
     time = float(attr[0])
     CH1 = float(attr[1])
 """
-
-result = rdp([[1, 1], [1, 1.1], [2, 2]], epsilon)
-print(result)
-result = rdp(matrix,epsilon)
-print(result)
+line = [(0,0),(1,0),(2,0),(2,1),(2,2),(1,2),(0,2),(0,1),(0,0)]
+print rdp(line, 1.0)
+#result = rdp([[1, 1], [1, 1.1], [2, 2]], epsilon)
+#print(result)
+r = rdp(matrix, 1.0)
+print(r)
 
