@@ -10,7 +10,7 @@ from rdp import rdp
 wdif = sys.argv[1]
 wdof = sys.argv[2]
 epsilon = float(sys.argv[3])
-#x_name = float(sys.argv[4])
+columN = int(sys.argv[4])
 #y_name = float(sys.argv[5])
 
 print(" ")
@@ -25,24 +25,29 @@ def readMyFile(filename):
         csvReader = csv.reader(csvDataFile)
         for row in csvReader:
             x.append(row[0])
-            y.append(row[1])
+            y.append(row[columN])
 
     return x, y
 
+def writeData(data_,wdof):  
+    with open(wdof, 'w') as csvf:
+        f = csv.writer(csvf)
+        #for row in :
+        f.writerows(data_)
 
 x,y = readMyFile(wdif)
+open(wdof, 'w').close
 
-print(x)
-print(float(y[1]))
-
+#print(x)
+#print(float(y[1]))
 
 matrix = []
 for i in range(1,len(x)):
     matrix.append([float(x[i]),float(y[i])])
 
-print(matrix)
+#print(matrix)
 
-print("end matrix")
+#print("end matrix")
 """
 if = open(wdinput)
 if.next()
@@ -55,10 +60,9 @@ for line in input_file:
     time = float(attr[0])
     CH1 = float(attr[1])
 """
-line = [(0,0),(1,0),(2,0),(2,1),(2,2),(1,2),(0,2),(0,1),(0,0)]
-print rdp(line, 1.0)
+
 #result = rdp([[1, 1], [1, 1.1], [2, 2]], epsilon)
 #print(result)
-r = rdp(matrix, 1.0)
-print(r)
-
+result = rdp(matrix,epsilon)
+#print(result)
+writeData(result,wdof)
